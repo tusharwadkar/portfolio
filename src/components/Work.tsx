@@ -6,6 +6,19 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP);
 
+const projects = [
+  { name: "Birla Eco Sodium", category: "Corporate Website", url: "https://www.birlaecosodium.com/" },
+  { name: "A Force For Good", category: "News & Media", url: "https://aforceforgoodupdates.com/" },
+  { name: "EMLT", category: "Corporate Website", url: "https://www.emlt.in/" },
+  { name: "Automag India", category: "Corporate Website", url: "https://automagindia.com/" },
+  { name: "Aahar Foods", category: "E-Commerce", url: "https://www.aaharfoods.com/" },
+  { name: "Shree Rubber Works", category: "Corporate Website", url: "https://www.shreerubberworks.com/" },
+  { name: "Greenviro", category: "Services", url: "https://greenviro.net/waste-water-treatment/" },
+  { name: "Ayama Fit", category: "Health & Fitness", url: "https://ayamafit.com/" },
+  { name: "Ayama Health", category: "Health & Fitness", url: "https://www.ayamahealth.com/" },
+  { name: "The Impulse Digital", category: "Digital Agency", url: "https://www.theimpulsedigital.com/" },
+];
+
 const Work = () => {
   useGSAP(() => {
   let translateX: number = 0;
@@ -54,21 +67,21 @@ const Work = () => {
           My <span>Work</span>
         </h2>
         <div className="work-flex">
-          {[...Array(10)].map((_value, index) => (
+          {projects.map((project, index) => (
             <div className="work-box" key={index}>
               <div className="work-info">
                 <div className="work-title">
                   <h3>{index + 1 < 10 ? `0${index + 1}` : index + 1}</h3>
 
                   <div>
-                    <h4>Project Name</h4>
-                    <p>Category</p>
+                    <h4>{project.name}</h4>
+                    <p>{project.category}</p>
                   </div>
                 </div>
                 <h4>Tools and features</h4>
-                <p>Javascript, TypeScript, React, Threejs</p>
+                <p>Web Development, UI/UX</p>
               </div>
-              <WorkImage image="/images/placeholder.webp" alt="" />
+              <WorkImage image={`https://image.thum.io/get/width/1200/crop/800/${project.url}`} alt={project.name} link={project.url} />
             </div>
           ))}
         </div>
