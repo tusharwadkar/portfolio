@@ -242,6 +242,8 @@
     border-right: none;
     border-bottom: 20px solid #1a1a1a;
     gap: 30px;
+    align-items: center;
+    text-align: center;
   }
   .work-flex .work-box:nth-child(even) {
     flex-direction: column;
@@ -250,10 +252,28 @@
     font-size: 40px;
     margin-top: 60px;
     margin-bottom: 20px;
+    text-align: center;
+  }
+  .work-title {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  .work-title > div {
+    text-align: center;
   }
   .work-title h3 {
     font-size: 28px;
     line-height: 28px;
+  }
+  .work-info h4 {
+    margin-bottom: 5px;
+  }
+  .work-info > p {
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
   }
   .work-image img {
     max-height: 300px;
