@@ -63,6 +63,12 @@ const Work = () => {
       mm.revert();
     };
   }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 1000);
+  }, []);
+
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
