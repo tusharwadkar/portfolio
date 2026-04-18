@@ -242,8 +242,8 @@
     border-right: none;
     border-bottom: 20px solid #1a1a1a;
     gap: 30px;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
   }
   .work-flex .work-box:nth-child(even) {
     flex-direction: column;
@@ -252,16 +252,16 @@
     font-size: 40px;
     margin-top: 60px;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
   }
   .work-title {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 15px;
     margin-bottom: 30px;
   }
   .work-title > div {
-    text-align: center;
+    text-align: left;
   }
   .work-title h3 {
     font-size: 28px;
@@ -272,8 +272,13 @@
   }
   .work-info > p {
     width: 100%;
-    margin: auto;
+    margin: 0;
     margin-top: 10px;
+  }
+  .work-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   .work-image img {
     max-height: 300px;
