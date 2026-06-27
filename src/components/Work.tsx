@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const projects = [
   { name: "Birla Eco Sodium", category: "Corporate Website", url: "https://www.birlaecosodium.com/" },
@@ -22,48 +22,20 @@ const projects = [
 
 const Work = () => {
   useGSAP(() => {
-    let mm = gsap.matchMedia();
-
-    mm.add("(min-width: 1025px)", () => {
-      let translateX: number = 0;
-
-      function setTranslateX() {
-        const box = document.getElementsByClassName("work-box");
-        if (box.length === 0) return;
-        const rectLeft = document.querySelector(".work-container")!
-          .getBoundingClientRect().left;
-        const rect = box[0].getBoundingClientRect();
-        const parentWidth = box[0]
-          .parentElement!.getBoundingClientRect().width;
-        let padding: number =
-          parseInt(window.getComputedStyle(box[0]).padding) / 2;
-        translateX =
-          rect.width * box.length - (rectLeft + parentWidth) + padding;
-      }
-
-      setTranslateX();
-
-      let timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".work-section",
-          start: "top top",
-          end: `+=${translateX}`,
-          scrub: true,
-          pin: true,
-          id: "work",
-        },
-      });
-
-      timeline.to(".work-flex", {
-        x: -translateX,
-        ease: "none",
-      });
+    gsap.from(".work-box", {
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".work-grid",
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
     });
-
-    return () => {
-      mm.revert();
-    };
   }, []);
+
   useEffect(() => {
     setTimeout(() => {
       ScrollTrigger.refresh();
@@ -76,22 +48,27 @@ const Work = () => {
         <h2>
           My <span>Work</span>
         </h2>
-        <div className="work-flex">
+        <div className="work-grid">
           {projects.map((project, index) => (
             <div className="work-box" key={index}>
+              <WorkImage
+                image={`https://image.thum.io/get/width/1200/crop/800/${project.url}`}
+                alt={project.name}
+                link={project.url}
+              />
               <div className="work-info">
-                <div className="work-title">
-                  <h3>{index + 1 < 10 ? `0${index + 1}` : index + 1}</h3>
-
-                  <div>
-                    <h4>{project.name}</h4>
-                    <p>{project.category}</p>
-                  </div>
+                <div className="work-header">
+                  <span className="work-number">
+                    {index + 1 < 10 ? `0${index + 1}` : index + 1}
+                  </span>
+                  <span className="work-category">{project.category}</span>
                 </div>
-                <h4>Tools and features</h4>
-                <p>Web Development, UI/UX</p>
+                <h3 className="work-name">{project.name}</h3>
+                <div className="work-details">
+                  <span className="work-tag">Web Development</span>
+                  <span className="work-tag">UI/UX</span>
+                </div>
               </div>
-              <WorkImage image={`https://image.thum.io/get/width/1200/crop/800/${project.url}`} alt={project.name} link={project.url} />
             </div>
           ))}
         </div>
